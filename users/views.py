@@ -4,6 +4,7 @@ from django.http.response import HttpResponseRedirect
 from django.contrib.auth.models import User
 
 from users.forms import UserForm
+from main.functions import generate_form_errors
 
 
 def login(request):
@@ -53,6 +54,18 @@ def signup(request):
             auth_login(request,user)
 
             return HttpResponseRedirect(reverse("web:index"))
+        else:
+            message = generate_form_errors(form)
+            
+            form = UserForm()
+            context={
+                "title" : "Signup",
+                "error" :  True,
+                "message" : message,
+                "form" : form,            
+            }
+            return render(request,"users/signup.html",context=context)
+    
     else:
         form = UserForm()
         context={
