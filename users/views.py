@@ -1,6 +1,8 @@
 from django.shortcuts import render,reverse
 from django.contrib.auth import authenticate, login as auth_login , logout as auth_logout
 from django.http.response import HttpResponseRedirect
+from django.contrib.auth.models import User
+
 from users.forms import UserForm
 
 
@@ -34,9 +36,27 @@ def logout(request):
 
 
 def signup(request):
-    form = UserForm()
-    context={
-        "title" : "Signup",
-        "form" : form,
-    }
-    return render(request, "users/signup.html", context=context)
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+
+            User.objects.create_user(
+               first_name = instance.first_name,
+               last_name = instance.last_name,
+               email = instance.email,
+               username = instance.username,
+               password = instance.password,
+            )
+
+            user = authenticate(request, username=instance.username, password=instance.password)
+            auth_login(request,user)
+
+            return HttpResponseRedirect(reverse("web:index"))
+    else:
+        form = UserForm()
+        context={
+            "title" : "Signup",
+            "form" : form,
+        }
+        return render(request, "users/signup.html", context=context)
