@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<section id="edit-post-home">
+    <section class="wrapper">   
+        {% include 'web/includes/header.html' %}
+        <section class="spotlight">
+            <h3>Create new post</h3>
+            <form action="" method="post" enctype="multipart/form-data">
+                    <div class="form-field">
+                        <label for="id_title" class="subheads" >
+                            Title
+                        </label>
+                        <input type="text" name="title" class="input" maxlength="255" required id="id_title">
+                    </div>
+                    <div class="form-field">
+                        <label class="subheads">
+                            Description
+                        </label>
+                        <div class="description">
+                            <div class="editor" data-field-id="id_description" style="display: inline-block;">
+                                <textarea cols="40" id="id_description" name="description" rows="10" required data-processed="0" >Hello</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label class="subheads" for="id_short_description">
+                            Short description
+                        </label>
+                        <textarea name="short_description" cols="40" rows="10" class="input" required id="id_short_description">
+                        Hello</textarea>
+                    </div>
+                    <div class="form-field">
+                        <label class="subheads" for="id_tags">
+                            Tags (Comma seperated)
+                        </label>
+                        <input type="text" name="tags"  class="input" required id="id_tags">
+                    </div>
+                    <div class="form-field">
+                        <label for="id_time_to_read" class="subheads" >
+                            Time to read
+                        </label>
+                        <input type="text" name="time_to_read" value="8 min" class="input" maxlength="128" required id="id_time_to_read">
+                    </div>
+                    <div class="form-field">
+                        <label for="id_featured_image" class="subheads" >
+                            Featured image
+                        </label>
+                        <input type="file" name="featured_image" accept="image/*" required id="id_featured_image">
+                    </div>
+                    <div class="form-field"></div>
+                        <label class="checkbox">
+                            <input type="checkbox" name="is_draft" id="id_is_draft">
+                            Is draft
+                        </label>
+                    </div>
+                    <div class="form-field">
+                        <input type="submit" value="Submit" />
+                    </div>
+            </form>
+        </section>
+    </section>
+</section>
+<!-- <script src="/static/ckeditor/ckeditor-init.js" data-ckeditor-basepath="/static/ckeditor/ckeditor/" id="ckeditor-init-script"></script> -->
+<!-- <script src="./js/ckeditor.js"></script> -->
+<script>ClassicEditor
+    .create( document.querySelector( '.editor' ), {
+        
+        licenseKey: '',
+        
+        
+        
+    } )
+    .then( editor => {
+        window.editor = editor;
+
+        
+        
+        
+    } )
+    .catch( error => {
+        console.error( 'Oops, something went wrong!' );
+        console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+        console.warn( 'Build id: fbn1rnj89y5k-nohdljl880ze' );
+        console.error( error );
+    } );
+</script>
+{% endblock %}
