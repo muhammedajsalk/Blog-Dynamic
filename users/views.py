@@ -30,3 +30,10 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return HttpResponseRedirect(reverse("web:index"))
+
+
+def signup(request):
+    context={
+        "title" : "Signup",
+    }
+    return render(request, "users/signup.html", context=context)
