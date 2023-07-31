@@ -26,10 +26,10 @@ class Post(models.Model):
     categories = models.ManyToManyField("posts.Category")
     time_to_read = models.CharField(max_length=128)
     featured_image = models.ImageField(upload_to="posts/")
+    is_draft = models.BooleanField(default=False)
 
     author = models.ForeignKey("posts.Author",on_delete=models.CASCADE)
     published_date = models.DateField()
-    is_draft = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
 
     def __str__(self):

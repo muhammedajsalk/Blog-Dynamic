@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 from users.forms import UserForm
 from main.functions import generate_form_errors
+from posts.models import Author
 
 
 def login(request):
@@ -42,13 +43,15 @@ def signup(request):
         if form.is_valid():
             instance = form.save(commit=False)
 
-            User.objects.create_user(
-               first_name = instance.first_name,
-               last_name = instance.last_name,
-               email = instance.email,
-               username = instance.username,
-               password = instance.password,
-            )
+            user = User.objects.create_user(
+                    first_name = instance.first_name,
+                    last_name = instance.last_name,
+                    email = instance.email,
+                    username = instance.username,
+                    password = instance.password,
+                    )
+
+            Author.objects.create(name=instance.first_name,user=user)
 
             user = authenticate(request, username=instance.username, password=instance.password)
             auth_login(request,user)
