@@ -8,14 +8,12 @@
     <div class="bottom">
         <form action="" method="post" >
             {% csrf_token %}
-            <div class="input_container">
-                <label for="id_username"> Username </label>
-                <input id="id_username" name="username" type="text" />
-            </div>
-            <div class="input_container">
-                <label for="id_password"> Password </label>
-                <input id="id_password" name="password" type="password" />
-            </div>
+            {% for field in form %}
+                <div class="input_container">
+                    <label for="{{field.id_for_label}}"> {{field.label}} </label>
+                    {{field}}
+                </div>
+            {% endfor %}
             <div class="submit_container">
                 {% if error %}
                     <p class="error-message">{{message}}</p>
