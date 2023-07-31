@@ -8,9 +8,16 @@ def create_post(request):
     if request.method == 'POST':
         pass
     else:
-        form = PostForm()
-    context = {
-        "title" : "Create New Post",
-        "form" : form
-    }
+        data = {
+            "title": "Hello",
+            "description": "Hello",
+            "short_description": "Hello",
+            "time_to_read" : "8 min",
+            "tags": "tecchnology,programming,coding",
+        }
+        form = PostForm(initial=data)
+        context = {
+            "title" : "Create New Post",
+            "form" : form
+        }
     return render(request, "posts/create.html", context=context)
