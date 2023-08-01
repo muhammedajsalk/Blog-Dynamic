@@ -1,7 +1,9 @@
 import datetime
+import json
 
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 from posts.forms import PostForm
 from posts.models import Author,Category
@@ -13,13 +15,13 @@ def create_post(request):
         form = PostForm(request.POST,request.FILES)
         if form.is_valid():
 
-            tags = form.cleaned_data('tags')
+            tags = form.cleaned_data['tags']
 
             if not Author.objects.filter(user=request.user).exists():
                 author = Author.objects.create(user=request.user,name=request.user.username)
             else:
                 author = request.user.author
-                
+
             instance = form.save(commit=False)
             instance.published_date = datetime.date.today()
             instance.author = author
@@ -27,8 +29,18 @@ def create_post(request):
 
             tags_list =tags.split(",")
             for tag in tags_list:
-                category, created = Category.objectts.get_or_create(title=tag.strip())
+                category, created = Category.objects.get_or_create(title=tag.strip())
                 instance.categories.add(category)
+            
+            response_data = {
+                "title" : "Successfully submitted",
+                "message" : "Successfully submitted",
+                "status" : "success",
+                "redirect" : "yes",
+                "redirect_url" : "/"
+            }
+
+            return HttpResponse(json.dumps(response_data),content_type="application/json")
     else:
         data = {
             "title": "Hello",
