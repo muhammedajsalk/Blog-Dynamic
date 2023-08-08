@@ -1,5 +1,5 @@
 from django.db import models
-
+from ckeditor.fields import RichTextField
 
 class Author(models.Model):
     name = models.CharField(max_length=255)
@@ -22,7 +22,7 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=255)
     short_description = models.TextField()
-    description = models.TextField()
+    description = RichTextField()
     categories = models.ManyToManyField("posts.Category")
     time_to_read = models.CharField(max_length=128)
     featured_image = models.ImageField(upload_to="posts/")
