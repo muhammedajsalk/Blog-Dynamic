@@ -7,6 +7,7 @@ from django.http import HttpResponse
 
 from posts.forms import PostForm
 from posts.models import Author,Category
+from main.functions import generate_form_errors
 
 
 @login_required(login_url="/users/login/")
@@ -40,7 +41,18 @@ def create_post(request):
                 "redirect_url" : "/"
             }
 
-            return HttpResponse(json.dumps(response_data),content_type="application/json")
+            
+        else:
+            error_message = generate_form_errors(form)
+            print(error_message)
+            response_data = {
+                "title" : "form validation error",
+                "message" : str(error_message),
+                "status" : "error",
+                "stable" : "yes"
+            }
+
+        return HttpResponse(json.dumps(response_data),content_type="application/json")
     else:
         data = {
             "title": "Hello",
