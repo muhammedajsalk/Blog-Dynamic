@@ -13,3 +13,21 @@ class PostForm(forms.ModelForm):
             "title" : forms.TextInput(attrs={'class':"input"}),
             "short_description" : forms.Textarea(attrs={'class':"input"}),
         }
+
+        error_messages ={
+            "title" : { 
+                 "required" : "Title field is required",
+            },
+            "description" :{
+                 "required" : "Description field is required",
+            },
+            "short_description" :{
+                 "required" : "Short description field is required",
+            },
+            "time_to_read" : {
+                "required" : "Time to read field is required",
+            },
+            "is_draft": {
+                "required" : " is draft field is required"
+            },
+        }
