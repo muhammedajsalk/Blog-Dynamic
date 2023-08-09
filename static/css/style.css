@@ -774,6 +774,9 @@ div.pagination div.pages a:hover {
     border-radius: 6px;
     margin-bottom: 3%;
 }
+#edit-post-home section.spotlight form div.description .django-ckeditor-widget{
+    display: block !important;
+}
 #edit-post-home section.spotlight form div.description div.top {
     display: flex;
     align-items: center;
