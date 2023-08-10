@@ -67,7 +67,7 @@
                             </div>
                         {% endif %}
                         <div class="pages">
-                            {% for i in instances.paginator.page_range %}
+                            {% for i in instances.paginator.get_elided_page_range %}
                                 {% if instances.number == i %}
                                    <span class="active"> {{i}} </span>
                                 {% else %}
