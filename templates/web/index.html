@@ -9,7 +9,7 @@
             <div class="all-posts">
                 <div class="post-section">
                     <ul class="posts">
-                        {% for post in posts %}
+                        {% for post in instances %}
                         <li>
                             <a href="./post.html">
                                 <div class="blog-image">
@@ -43,34 +43,61 @@
                         </li>             
                         {% endfor %}
                     </ul>
+                    {% if instances.has_other_pages %}
                     <div class="pagination">
-                        <div class="prev disabled">
-                            <span class="arrow">
-                                <img
-                                    src="{% static './images/icons/arrow.svg' %}"
-                                    alt="Arrow"
-                                />
-                            </span>
-                            Previous
-                        </div>
+                        {% if instances.has_previous %}
+                            <a href="?page={{instances.previous_page_number}}" class="prev">
+                                <span class="arrow">
+                                    <img
+                                        src="{% static './images/icons/arrow.svg' %}"
+                                        alt="Arrow"
+                                    />
+                                </span>
+                                Previous
+                            </a>
+                        {% else %}
+                            <div class="prev disabled">
+                                <span class="arrow">
+                                    <img
+                                        src="{% static './images/icons/arrow.svg' %}"
+                                        alt="Arrow"
+                                    />
+                                </span>
+                                Previous
+                            </div>
+                        {% endif %}
                         <div class="pages">
-                            <span class="active"> 1 </span>
-                            <a href="#"> 2 </a>
-                            <a href="#"> 3 </a>
+                            {% for i in instances.paginator.page_range %}
+                                {% if instances.number == i %}
+                                   <span class="active"> {{i}} </span>
+                                {% else %}
+                                   <a href="?page={{i}}"> {{i}} </a>
+                                {% endif %} 
+                            {% endfor %}
                         </div>
-                        <a href="#" class="next">
-                            Next
-                            <span class="arrow">
-                                <img
-                                    src="{% static './images/icons/arrow.svg' %}"
-                                    alt="Arrow"
-                                />
-                            </span>
-                        </a>
-    
+                        {% if instances.has_next %}
+                            <a href="?page={{instances.next_page_number}}" class="next">
+                                Next
+                                <span class="arrow">
+                                    <img
+                                        src="{% static './images/icons/arrow.svg' %}"
+                                        alt="Arrow"
+                                    />
+                                </span>
+                            </a>
+                        {% else %}
+                            <div  class="next disabled">
+                                Next
+                                <span class="arrow">
+                                    <img
+                                        src="{% static './images/icons/arrow.svg' %}"
+                                        alt="Arrow"
+                                    />
+                                </span>
+                            </div>
+                        {% endif %}
                     </div>
-
-
+                    {% endif %}
                 </div>
                 <div class="filter-section" id="hamburger-menu">
                     <form action="">
