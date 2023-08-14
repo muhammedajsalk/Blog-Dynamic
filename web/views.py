@@ -25,6 +25,17 @@ def index(request):
     if search_categories:
         posts =posts.filter(categories__in = search_categories).distinct()
 
+    sort = request.GET.get("sort")
+    if sort:
+        if sort == "title-asc":
+            posts = posts.order_by("title")
+        elif sort == "title-desc":
+            posts = posts.order_by("-title")
+        elif sort == "date-asc":
+            posts = posts.order_by("published_date")
+        elif sort == "date-desc":
+            posts = posts.order_by("-published_date")
+            
     instances = Paginator(posts, 3)
     page = request.GET.get('page', 1)
 
