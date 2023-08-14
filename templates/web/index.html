@@ -47,7 +47,8 @@
                     {% if instances.has_other_pages %}
                     <div class="pagination">
                         {% if instances.has_previous %}
-                            <a href="?page={{instances.previous_page_number}}" class="prev">
+                           {% change_params instances.previous_page_number as prev_url %}
+                            <a href="{{prev_url}}" class="prev">
                                 <span class="arrow">
                                     <img
                                         src="{% static './images/icons/arrow.svg' %}"
@@ -73,12 +74,14 @@
                                 {% if instances.number == i %}
                                    <span class="active"> {{i}} </span>
                                 {% else %}
-                                   <a href="?page={{i}}"> {{i}} </a>
+                                   {% change_params i as current_url %}
+                                   <a href="{{current_url}}"> {{i}} </a>
                                 {% endif %} 
                             {% endfor %}
                         </div>
                         {% if instances.has_next %}
-                            <a href="?page={{instances.next_page_number}}" class="next">
+                            {% change_params instances.next_page_number as next_url %}
+                            <a href="{{next_url}}" class="next">
                                 Next
                                 <span class="arrow">
                                     <img
