@@ -8,15 +8,20 @@ from posts.models import Post,Category,Author
 def index(request):
     posts = Post.objects.filter(is_deleted=False,is_draft=False)
     
-    categories = Category.objects.all()
+    categories = Category.objects.all()[:5]
     authors = Author.objects.all()
 
     search_authors = request.GET.getlist("author")
     print(search_authors)
     if search_authors:
         posts =posts.filter(author__in = search_authors)
+    
+    search_categories = request.GET.getlist("category")
+    print(search_categories)
+    if search_categories:
+        posts =posts.filter(categories__in = search_categories).distinct()
 
-    instances = Paginator(posts, 2)
+    instances = Paginator(posts, 3)
     page = request.GET.get('page', 1)
 
     try:

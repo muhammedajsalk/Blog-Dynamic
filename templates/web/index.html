@@ -149,32 +149,12 @@
                         </div>
                         <p class="filter-head">Categories</p>
                         <div class="filter">
-                            
+                            {% for category in categories %}
                             <label class="checkbox">
-                                <input type="checkbox" name="category" />
-                                <span class="label">technology</span>
+                                <input type="checkbox" value="{{category.id}}" name="category" />
+                                <span class="label">{{category.title}}</span>
                             </label>
-                            
-                            <label class="checkbox">
-                                <input type="checkbox" name="category" />
-                                <span class="label">programming</span>
-                            </label>
-                            
-                            <label class="checkbox">
-                                <input type="checkbox" name="category" />
-                                <span class="label">coding</span>
-                            </label>
-                            
-                            <label class="checkbox">
-                                <input type="checkbox"name="category" />
-                                <span class="label">government</span>
-                            </label>
-                            
-                            <label class="checkbox">
-                                <input type="checkbox"name="category" />
-                                <span class="label">data-science</span>
-                            </label>
-                            
+                            {% endfor %}
                         </div>
                         <p class="filter-head">Authors</p>
                         <div class="filter">
