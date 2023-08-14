@@ -178,47 +178,12 @@
                         </div>
                         <p class="filter-head">Authors</p>
                         <div class="filter">
-                        
-                            <label class="checkbox">
-                                <input type="checkbox" name="author" />
-                                <span class="label">{{request.user.username}}</span>
-                            </label>
-                        
-                            <label class="checkbox">
-                                <input type="checkbox" name="author" />
-                                <span class="label">Karishma</span>
-                            </label>
-                        
-                            <label class="checkbox">
-                                <input type="checkbox" name="author" />
-                                <span class="label">Jobin</span>
-                            </label>
-                        
-                            <label class="checkbox">
-                                <input type="checkbox" name="author" />
-                                <span class="label">Pranav</span>
-                            </label>
-                        
-                            <label class="checkbox">
-                                <input type="checkbox" name="author" />
-                                <span class="label">yasir</span>
-                            </label>
-                        
-                            <label class="checkbox">
-                                <input type="checkbox" name="author" />
-                                <span class="label">yasir</span>
-                            </label>
-                        
-                            <label class="checkbox">
-                                <input type="checkbox" name="author" />
-                                <span class="label">Ann Mary</span>
-                            </label>
-                        
-                            <label class="checkbox">
-                                <input type="checkbox" name="author" />
-                                <span class="label">Sivaji</span>
-                            </label>
-                            
+                            {% for author in authors %}
+                                <label class="checkbox">
+                                    <input type="checkbox" value="{{author.id}}" name="author" />
+                                    <span class="label">{{author.name}}</span>
+                                </label>
+                            {% endfor %}
                         </div>
                         <input type="submit" value="Filter" />
                     </form>
