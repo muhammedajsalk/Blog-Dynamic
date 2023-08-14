@@ -11,6 +11,10 @@ def index(request):
     categories = Category.objects.all()[:5]
     authors = Author.objects.all()
 
+    q = request.GET.get('q')
+    if q:
+        posts = posts.filter(title__icontains=q)
+
     search_authors = request.GET.getlist("author")
     print(search_authors)
     if search_authors:
