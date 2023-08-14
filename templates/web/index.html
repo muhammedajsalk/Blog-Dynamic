@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 {% load static %}
+{% load peginator_tags %}
 <section id="home">
     <section class="wrapper">
         {% include 'web/includes/header.html' %}
@@ -67,7 +68,8 @@
                             </div>
                         {% endif %}
                         <div class="pages">
-                            {% for i in instances.paginator.get_elided_page_range %}
+                            {% get_elided_page_range instances.paginator instances.number as page_range %}
+                            {% for i in page_range %}
                                 {% if instances.number == i %}
                                    <span class="active"> {{i}} </span>
                                 {% else %}

@@ -8,7 +8,7 @@ from posts.models import Post
 def index(request):
     posts = Post.objects.filter(is_deleted=False,is_draft=False)
     
-    instances = Paginator(posts, 1)
+    instances = Paginator(posts, 2)
     page = request.GET.get('page', 1)
 
     try:
