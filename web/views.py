@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http.response import HttpResponse
-from django.core.paginator import Paginator, PageNotAnInteger,EmptyPage
 
 from posts.models import Post,Category,Author
+from main.functions import paginate_instances
 
 
 def index(request):
@@ -35,17 +35,8 @@ def index(request):
             posts = posts.order_by("published_date")
         elif sort == "date-desc":
             posts = posts.order_by("-published_date")
-            
-    instances = Paginator(posts, 3)
-    page = request.GET.get('page', 1)
-
-    try:
-        instances = instances.page(page)
-    except PageNotAnInteger:
-        instances = instances.page(1)
-    except EmptyPage:
-        instances = instances.page(instances.num_pages)
-
+    
+    instances = paginate_instances(request,posts)
 
     context={
         "title" : "Home Page",
