@@ -26,3 +26,12 @@ def change_params(context,page):
         full_path += f"?page={page}"
 
     return full_path
+
+
+@register.inclusion_tag("web/includes/pagionation.html",takes_context=True)
+def load_pagination(context, instances):
+    request = context['request']
+    return{
+        "instances" : instances,
+        "request" : request
+    }
