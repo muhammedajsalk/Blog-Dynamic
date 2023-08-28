@@ -45,3 +45,8 @@ def index(request):
         "authors" : authors
     }
     return render(request, 'web/index.html',context=context)
+
+
+def post(request,id):
+    context = {}
+    return render(request, 'web/post.html',context=context)

@@ -12,7 +12,7 @@
                     <ul class="posts">
                         {% for post in instances %}
                         <li>
-                            <a href="./post.html">
+                            <a href="{% url 'web:post' id=post.id %}">
                                 <div class="blog-image">
                                     <img
                                         src="{{post.featured_image.url}}"
