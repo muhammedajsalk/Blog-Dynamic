@@ -37,7 +37,7 @@
                                 </div>
                             </a>
                             <div class="bottom">
-                                {% for tag in post.categories.all %}
+                                {% for tag in post.categories.all|slice:4 %}
                                 <a href="#" class="design one"> {{tag.title}} </a>    
                                 {% endfor %}
                             </div>
