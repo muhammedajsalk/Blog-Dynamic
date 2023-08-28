@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http.response import HttpResponse
 
 from posts.models import Post,Category,Author
@@ -48,5 +48,8 @@ def index(request):
 
 
 def post(request,id):
-    context = {}
+    instance = get_object_or_404(Post.objects.filter(id=id))
+    context = {
+        "instance" : instance
+    }
     return render(request, 'web/post.html',context=context)

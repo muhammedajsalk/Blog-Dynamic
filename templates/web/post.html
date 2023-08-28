@@ -3,77 +3,29 @@
 {% block content %}
     <section id="single-page-home">
         <section class="wrapper">         
-            <header>
-                <h1>
-                    <a href="">
-                        <img
-                            src="{% static './images/icons/blog-logo.svg' %}"
-                            alt="Logo"
-                        />
-                    </a>
-                </h1>
-                <div>
-                    <a href="./create.html" class="login my-posts">
-                    Create
-                    </a>
-                    <a href="./my-posts.html" class="login my-posts">
-                        My Posts
-                    </a>
-                    <a href="#" class="login"> Logout </a>
-                    
-                <div>
-                <div id="hamburger-icon">
-                    <img
-                        src="{% static './images/icons/hamburger.svg' %}"
-                        alt="Hamburger"
-                    />
-                </div>
-            </header>
+            {% include 'web/includes/header.html' %}
             <section class="single-page-spotlight">
                 <div class="blog-category">
-                    
+                    {% for category in instance.categories.all %}
                     <span class="category">
-                        government
+                        {{category.title}}
                     </span>
-                    
-                    <span class="category">
-                        data-science
-                    </span>
-                    
-                    <span class="category">
-                        personal-data
-                    </span>
-                    
-                    <span class="category">
-                        data-protection
-                    </span>
-                    
-                    <span class="category">
-                        government-surveillance
-                    </span>
-                    
-                    <span class="category">
-                        us-government
-                    </span>
-                    
-                    <span class="category">
-                        biometrics
-                    </span>
+                    {% endfor %}
                     <span class="read">
                         <span class="clock">
                             <img src="{% static './images/icons/clock.svg' %}" alt="Clock" />
                         </span>
-                        8 min
+                        {{instance.time_to_read}}
                     </span>
                 </div>
                 <h3 class="title">
-                    Federal Biometrics: How Does the Government Use Biometrics Data?
+                    {{instance.title}}
                 </h3>
                 <p class="description">
-                    How Government Biometric Programs Work Right Now
+                    {{instance.short_description}}
                 </p>
                 <div class="post-thumbnail">
-                    <img src="{% static './images//Images/system.png' %}" alt="Post-thumbnail" >
+                    <img src="{{instance.featured_image.url}}" >
                 </div>
                 <div class="details">
                     <span class="published">
@@ -81,7 +33,7 @@
                             Written by
                         </p>
                         <p class="name">
-                            Sobir N
+                            {{instance.author}}
                         </p>
                     </span>
                     <span class="published">
@@ -89,7 +41,7 @@
                             Published on
                         </p>
                         <p class="name">
-                        March 25, 2022
+                            {{instance.published_date}}
                         </p>
                     </span>
                     <ul class="social">
@@ -120,106 +72,8 @@
                     </ul>
                 </div>
                 <p class="detailed-description">
-                <p>Government biometric technology programs have a long history &mdash; going as far back as the <strong>first uses of fingerprinting by police in the 1800s.</strong></p>
-
-                <p>&nbsp;</p>
-
-                <p>Modern programs, however, are both more sophisticated and more complex. Current government biometric programs may use data like fingerprints, voice scans, and facial recognition, along with technology like AI and big data analysis.</p>
-
-                <p>&nbsp;</p>
-
-                <p>This is how the government is using biometric technology right now &mdash; and future plans for government biometric programs.</p>
-
-                <h2>#<strong>How Government Biometric Programs Work Right Now</strong></h2>
-
-                <p>Biometrics can refer to a broad range of programs &mdash; almost anything that collects body measurements or data related to human characteristics, typically characteristics that are both unique and unchanging.</p>
-
-                <p>&nbsp;</p>
-
-                <p>The <a href="https://fedtechmagazine.com/article/2019/08/how-government-uses-biometric-authentication-technology-perfcon" rel="noopener noreferrer ugc">Department of Homeland Security</a> is one of the best-known users of biometrics. The agency primarily uses the technology to screen travelers and detect illegal entry.</p>
-
-                <p>&nbsp;</p>
-
-                <p>Since 2016, U.S. Customs and Border Protection (CBP) has also been working with airlines to implement biometrics-powered traveler screening.</p>
-
-                <p>&nbsp;</p>
-
-                <h2>#<strong><em>Between 2016 and 2019, CBP screened <a href="https://thehill.com/policy/transportation/448643-cbp-says-it-has-caught-over-100-imposters-out-of-19-million-scanned-by" rel="noopener noreferrer ugc">more than 19 million</a> international passengers and was able to identify &ldquo;over 100&rdquo; individuals attempting to fly using the identities of other people.</em></strong></h2>
-
-                <p>&nbsp;</p>
-
-                <p><a href="https://www.nytimes.com/2021/12/07/travel/biometrics-airports-security.html" rel="noopener noreferrer ugc">Experts predict</a> that biometric screening will continue to become more common in major airports around the country. In addition to facial recognition, airlines and agencies like CBP may also use iris scanning technology to screen passengers before boarding.</p>
-
-                <p>&nbsp;</p>
-
-                <p>U.S. Citizenship and Immigration Services also gathers biometric data on anyone who applies for a &ldquo;benefit&rdquo; &mdash; like a work permit, citizenship, green card or even a green card renewal. Visa applicants may need a digital photo of their face and a set of fingerprint scans, for example.</p>
-
-                <p>&nbsp;</p>
-
-                <p>Non-U.S. citizen investors applying for a visa, for example, may need to have biometric data on file in addition to meeting the other <a href="https://shanelaw.com/investor-immigration/" rel="noopener noreferrer ugc">investor visa requirements</a> &mdash; like investing in a commercial venture individually.</p>
-
-                <p>&nbsp;</p>
-
-                <p>Despite some pushback from privacy experts and activists, these programs are likely to stick around. Not every government biometric program has been as successful, however.</p>
-
-                <h2>#<strong>How Government Biometrics Can Fail</strong></h2>
-
-                <p>In February 2022, the <a href="https://krebsonsecurity.com/2022/02/irs-to-ditch-biometric-requirement-for-online-access/" rel="noopener noreferrer ugc">IRS announced</a> &mdash; then quickly reversed &mdash; a plan to use third-party biometrics authentication company <a href="http://ID.me" rel="noopener noreferrer ugc">ID.me</a> to verify the identity of taxpayers.</p>
-
-                <p>&nbsp;</p>
-
-                <p>According to the IRS, biometric identification was to become the only way for taxpayers to access their IRS records online.</p>
-
-                <p>&nbsp;</p>
-
-                <p>The ID.me system is used stored facial scans and facial recognition to verify a person&rsquo;s identity. To log in, taxpayers would take a selfie using a phone camera or web camera. Then, the system would authenticate their identity using the stored facial information.</p>
-
-                <p>&nbsp;</p>
-
-                <p>The IRS put the plan on hold after privacy experts, lawmakers and individuals raised concerns about the verification software, the security of taxpayer&rsquo;s biometric data, and the potential that biometric identification could disadvantage the disabled or those with limited access to technology.</p>
-
-                <h2>#<strong>Future Plans for Government Biometric Programs</strong></h2>
-
-                <p>In February 2022, the <a href="https://www.biometricupdate.com/202202/dhs-seeks-biometric-investments-for-border-security-addresses-privacy-concerns" rel="noopener noreferrer ugc">DHS announced a call</a> for innovators in the biometrics field. The call encourages organizations in the science and technology community to suggest solutions to the challenges the agency currently faces &mdash; including biometrics for border security programs and privacy in biometric technology.</p>
-
-                <p>&nbsp;</p>
-
-                <p>The same month, the department also addressed concerns about the privacy of biometric technologies.</p>
-
-                <p>&nbsp;</p>
-
-                <p>DHS Chief Privacy Officer Lynn Parker Dupree told <a href="https://federalnewsnetwork.com/agency-oversight/2022/02/dhs-privacy-chief-aims-to-promote-privacy-enhancing-technologies/" rel="noopener noreferrer ugc">Federal News Network</a> that &ldquo;I have been really working with academia and technologists to figure out how we can build tools that actually enhance privacy.&rdquo;</p>
-
-                <p>&nbsp;</p>
-
-                <p>Dupree also said that the DHS will make sure &ldquo;mechanisms are in place&rdquo; to mitigate privacy risks and the limitations of biometrics.</p>
-
-                <p>&nbsp;</p>
-
-                <p>This new call for collaboration is part of a broader DHS move to adopt more touchless biometric technology.</p>
-
-                <p>&nbsp;</p>
-
-                <p>The DHS is also <a href="https://www.biometricupdate.com/202201/dhs-svip-program-offering-funding-for-biometric-wearables" rel="noopener noreferrer ugc">offering $1.7 million</a> in funding to businesses that work on biometric wearables.</p>
-
-                <p>&nbsp;</p>
-
-                <p>The funding is available to startups and small businesses that &ldquo;address the specifically defined use cases access to government funding to develop proof of concepts, pilot projects, and in-field testing of innovative biometric technologies,&rdquo; according to Biometric Update.</p>
-
-                <p>&nbsp;</p>
-
-                <p>In addition to DHS programs, there is likely to be a significant expansion of government use of biometrics in the next few years. Customs and Border Protection, for example, could be on track to expand its biometric screening programs and invest in new biometric technologies.</p>
-
-                <h2>#<strong>Government Biometric Programs Are Expanding &mdash; But Often Face Pushback</strong></h2>
-
-                <p>The government has long used biometrics to verify the identity of individuals, including international travelers and visa applicants.</p>
-
-                <p>&nbsp;</p>
-
-                <p>New biometrics programs emerge all the time, but not every experiment is successful.</p>
-
-                <p>Right now, the DHS and CBP are two major U.S. agencies that use biometrics. In the near future, the DHS will probably expand its use of biometrics, though privacy advocates and lawmakers may push back on new programs.</p>
-                                </p>
+                    {{instance.description|safe}}
+                </p>
                 </section>
         </section>
     </section>
