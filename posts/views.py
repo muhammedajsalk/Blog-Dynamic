@@ -67,3 +67,9 @@ def create_post(request):
             "form" : form,
         }
     return render(request, "posts/create.html", context=context)
+
+
+@login_required(login_url="/users/login/")
+def my_posts(request):
+    context = {}
+    return render(request, "posts/my-posts.html", context=context)

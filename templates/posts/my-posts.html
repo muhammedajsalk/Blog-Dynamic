@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section id="my-posts-home">
+        <section class="wrapper">                
+            <header>
+                <h1>
+                    <a href="./index.html">
+                        <img
+                            src="{% static './images/icons/blog-logo.svg' %}"
+                            alt="Logo"
+                        />
+                    </a>
+                </h1>
+                <div>
+                    <a href="./create.html" class="login my-posts">
+                    Create
+                    </a>
+                    <a href="./my-posts.html" class="login my-posts">
+                        My Posts
+                    </a>
+                    <a href="#" class="login"> Logout </a>
+                <div>
+                <div id="hamburger-icon">
+                    <img
+                        src="{% static './images/icons/hamburger.svg' %}"
+                        alt="Hamburger"
+                    />
+                </div>
+            </header>
+            <section class="spotlight">
+                <h3>
+                    My Posts
+                </h3>
+                <ul class="posts">
+                    
+                    <li class="post">
+                        <div class="top">
+                            <h5 class="title">
+                                How to Create a Successful Food Delivery App
+                            </h5>
+                            <div class="buttons">
+                                <a 
+                                href="#" 
+                                class="danger"
+                                data-text="Are you sure want to remove this post. You can't undo this action." 
+                                data-title="Confirm Delete!"
+                                title="Delete!"
+                            >
+                                    <img src="{% static './images/icons/delete.svg' %}" alt="Delete" />
+                                </a>
+                                <a href="#" class="warning">
+                                    <img src="{% static './images/icons/pencil.svg' %}" alt="Edit" />
+                                </a>
+                                <a 
+                                    href="#" 
+                                    class="danger"
+                                    data-text="Are you sure want to update this post" 
+                                    data-title="Confirm Status!"
+                                    title="Draft"
+                                >
+                                    <img src="{% static './images/icons/sheet.svg' %}" alt="Edit" />
+                                </a>
+                            </div>
+                        </div>
+                        <p class="description">
+                            Food Delivery App
+                        </p>
+                        <div class="bottom">
+                            <a href="./post.html" class="view">
+                                View
+                                <span>
+                                    <img src="{% static './images/icons/up-arrow.svg' %}" alt="Arrow">
+                                </span>
+                            </a>
+                            <p class="date">
+                                13 Jan 2022
+                            </p>
+                        </div>
+                    </li>
+                    
+                    <li class="post">
+                        <div class="top">
+                            <h5 class="title">
+                                A Guide to Hiring iOS and Android Developers
+                            </h5>
+                            <div class="buttons">
+                                <a 
+                                href="#" 
+                                class="danger"
+                                data-text="Are you sure want to remove this post. You can't undo this action." 
+                                data-title="Confirm Delete!"
+                                title="Delete!"
+                            >
+                                    <img src="{% static './images/icons/delete.svg' %}" alt="Delete" />
+                                </a>
+                                <a href="#" class="warning">
+                                    <img src="{% static './images/icons/pencil.svg' %}" alt="Edit" />
+                                </a>
+                                <a 
+                                    href="#" 
+                                    class="danger"
+                                    data-text="Are you sure want to update this post" 
+                                    data-title="Confirm Status!"
+                                    title="Draft"
+                                >
+                                    <img src="{% static './images/icons/sheet.svg' %}" alt="Edit" />
+                                </a>
+                            </div>
+                        </div>
+                        <p class="description">
+                            Easy Steps to Hire iOS and Android Developers
+                        </p>
+                        <div class="bottom">
+                            <a href="./post.html" class="view">
+                                View
+                                <span>
+                                    <img src="{% static './images/icons/up-arrow.svg' %}" alt="Arrow">
+                                </span>
+                            </a>
+                            <p class="date">
+                                13 Jan 2022
+                            </p>
+                        </div>
+                    </li>
+                    
+                    <li class="post">
+                        <div class="top">
+                            <h5 class="title">
+                                AI is &#x27;Better Than&#x27; Humans and That is Ok
+                            </h5>
+                            <div class="buttons">
+                                <a 
+                                href="#" 
+                                class="danger"
+                                data-text="Are you sure want to remove this post. You can't undo this action." 
+                                data-title="Confirm Delete!"
+                                title="Delete!"
+                            >
+                                    <img src="{% static './images/icons/delete.svg' %}" alt="Delete" />
+                                </a>
+                                <a href="#" class="warning">
+                                    <img src="{% static './images/icons/pencil.svg' %}" alt="Edit" />
+                                </a>
+                                <a 
+                                    href="#" 
+                                    class="danger"
+                                    data-text="Are you sure want to update this post" 
+                                    data-title="Confirm Status!"
+                                    title="Draft"
+                                >
+                                    <img src="{% static './images/icons/sheet.svg' %}" alt="Edit" />
+                                </a>
+                            </div>
+                        </div>
+                        <p class="description">
+                            Is Artificial Intelligence Replacing Human Responsibilities?
+                        </p>
+                        <div class="bottom">
+                            <a href="./post.html" class="view">
+                                View
+                                <span>
+                                    <img src="{% static './images/icons/up-arrow.svg' %}" alt="Arrow">
+                                </span>
+                            </a>
+                            <p class="date">
+                                13 Jan 2022
+                            </p>
+                        </div>
+                    </li>
+                    
+                    <li class="post">
+                        <div class="top">
+                            <h5 class="title">
+                                I Met a Rich Programmer, He Gave Me 3 Life-Changing Pieces of Advice
+                            </h5>
+                            <div class="buttons">
+                                <a 
+                                href="#" 
+                                class="danger"
+                                data-text="Are you sure want to remove this post. You can't undo this action." 
+                                data-title="Confirm Delete!"
+                                title="Delete!"
+                            >
+                                    <img src="{% static './images/icons/delete.svg' %}" alt="Delete" />
+                                </a>
+                                <a href="#" class="warning">
+                                    <img src="{% static './images/icons/pencil.svg' %}" alt="Edit" />
+                                </a>
+                                <a 
+                                    href="#" 
+                                    class="danger"
+                                    data-text="Are you sure want to update this post" 
+                                    data-title="Confirm Status!"
+                                    title="Draft"
+                                >
+                                    <img src="{% static './images/icons/sheet.svg' %}" alt="Edit" />
+                                </a>
+                            </div>
+                        </div>
+                        <p class="description">
+                            #2 Never quit your Job
+                        </p>
+                        <div class="bottom">
+                            <a href="./post.html" class="view">
+                                View
+                                <span>
+                                    <img src="{% static './images/icons/up-arrow.svg' %}" alt="Arrow">
+                                </span>
+                            </a>
+                            <p class="date">
+                                13 Jan 2022
+                            </p>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </section>
+        </section>
+    </section>
+{% endblock %}
