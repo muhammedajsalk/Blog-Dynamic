@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
 from posts.forms import PostForm
-from posts.models import Author,Category
-from main.functions import generate_form_errors
+from posts.models import Author,Category,Post
+from main.functions import generate_form_errors,paginate_instances
 
 
 @login_required(login_url="/users/login/")
@@ -71,5 +71,10 @@ def create_post(request):
 
 @login_required(login_url="/users/login/")
 def my_posts(request):
-    context = {}
+    posts = Post.objects.filter(author__user=request.user, is_deleted=False)
+    instances = paginate_instances(request,posts,per_page=8)
+    context = {
+        "title" : "My Posts",
+        "instances" : instances
+    }
     return render(request, "posts/my-posts.html", context=context)
