@@ -23,7 +23,7 @@
                                     <div class="date">
                                         <h4 class="name">{{post.author.name}}</h4>
                                         <div class="round"></div>
-                                        <span> {{post.published_date}} </span>
+                                        <span> {{post.published_date|date:"d/m/Y l"}} </span>
                                     </div>
                                     <h3 class="head">
                                         {{post.title|capfirst}}
