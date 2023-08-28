@@ -1,7 +1,7 @@
 import datetime
 import json
 
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
@@ -78,3 +78,18 @@ def my_posts(request):
         "instances" : instances
     }
     return render(request, "posts/my-posts.html", context=context)
+
+
+@login_required(login_url="/users/login/")
+def delete_post(request,id):
+    instance = get_object_or_404(Post,id=id)
+    instance.is_deleted =True
+    instance.save()
+
+    response_data = {
+        "title" : "Successfully deleted",
+        "message" : "Post deleted Succesfully",
+        "status" : "success"
+    }
+
+    return HttpResponse(json.dumps(response_data),content_type="application/json")
