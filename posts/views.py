@@ -114,20 +114,15 @@ def draft_post(request,id):
 def edit_post(request,id):
     instance = get_object_or_404(Post,id=id)
     if request.method == 'POST':
-        form = PostForm(request.POST,request.FILES)
+        form = PostForm(request.POST,request.FILES,instance=instance)
         if form.is_valid():
 
             tags = form.cleaned_data['tags']
 
-            if not Author.objects.filter(user=request.user).exists():
-                author = Author.objects.create(user=request.user,name=request.user.username)
-            else:
-                author = request.user.author
-
             instance = form.save(commit=False)
-            instance.published_date = datetime.date.today()
-            instance.author = author
             instance.save()
+
+            instance.categories.clear()
 
             tags_list =tags.split(",")
             for tag in tags_list:
@@ -145,7 +140,6 @@ def edit_post(request,id):
             
         else:
             error_message = generate_form_errors(form)
-            print(error_message)
             response_data = {
                 "title" : "form validation error",
                 "message" : str(error_message),
