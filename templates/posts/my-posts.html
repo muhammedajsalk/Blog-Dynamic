@@ -27,7 +27,7 @@
                             >
                                     <img src="{% static './images/icons/delete.svg' %}" alt="Delete" />
                                 </a>
-                                <a href="#" class="warning action-button">
+                                <a href="{% url 'posts:edit_post' id=instance.id %}" class="warning">
                                     <img src="{% static './images/icons/pencil.svg' %}" alt="Edit" />
                                 </a>
                                 <a 
