@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "blog",
+        'NAME': "blogtwo",
         "USER": "postgres",
         "PASSWORD": "helloworld",
         "HOST": "localhost",
@@ -139,3 +139,6 @@ CKEDITOR_CONFIGS = {
         'width': '100%'
     }
 }
+
+# In settings.py
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

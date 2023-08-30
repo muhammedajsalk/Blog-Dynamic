@@ -10,7 +10,7 @@ class Author(models.Model):
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=25)
+    title = models.CharField(max_length=255)
 
     class Meta:
         verbose_name_plural = "categories"
