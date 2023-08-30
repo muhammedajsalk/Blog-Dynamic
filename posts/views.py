@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from posts.forms import PostForm
 from posts.models import Author,Category,Post
 from main.functions import generate_form_errors,paginate_instances
+from main.decorators import allow_self
 
 
 @login_required(login_url="/users/login/")
@@ -81,6 +82,7 @@ def my_posts(request):
 
 
 @login_required(login_url="/users/login/")
+@allow_self
 def delete_post(request,id):
     instance = get_object_or_404(Post,id=id)
     instance.is_deleted =True
@@ -96,6 +98,7 @@ def delete_post(request,id):
 
 
 @login_required(login_url="/users/login/")
+@allow_self
 def draft_post(request,id):
     instance = get_object_or_404(Post,id=id)
     instance.is_draft = not instance.is_draft
@@ -111,6 +114,7 @@ def draft_post(request,id):
 
 
 @login_required(login_url="/users/login/")
+@allow_self
 def edit_post(request,id):
     instance = get_object_or_404(Post,id=id)
     if request.method == 'POST':
