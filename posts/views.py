@@ -93,3 +93,18 @@ def delete_post(request,id):
     }
 
     return HttpResponse(json.dumps(response_data),content_type="application/json")
+
+
+@login_required(login_url="/users/login/")
+def draft_post(request,id):
+    instance = get_object_or_404(Post,id=id)
+    instance.is_draft = not instance.is_draft
+    instance.save()
+
+    response_data = {
+        "title" : "Successfully change",
+        "message" : "Post Updated Succesfully",
+        "status" : "success"
+    }
+
+    return HttpResponse(json.dumps(response_data),content_type="application/json")

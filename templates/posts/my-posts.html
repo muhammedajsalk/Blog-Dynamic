@@ -31,8 +31,8 @@
                                     <img src="{% static './images/icons/pencil.svg' %}" alt="Edit" />
                                 </a>
                                 <a 
-                                    href="#" 
-                                    class="danger action-button"
+                                    href="{% url 'posts:draft_post' id=instance.id %}" 
+                                    class="{% if instance.is_draft %}success{% else %}danger{% endif %} action-button reload"
                                     data-text="Are you sure want to update this post" 
                                     data-title="Confirm Status!"
                                     title="Draft"
