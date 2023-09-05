@@ -1,4 +1,7 @@
 import csv
+import uuid
+
+import wget
 
 from django.core.management.base import BaseCommand
 from django.conf import settings
@@ -25,6 +28,14 @@ class Command(BaseCommand):
             date = row[3]
             tags = row[5]
             title = row[6]
+            image = "https://picsum.photos/1500/1000"
+
+            file_name = f'{uuid.uuid4()}.jpg'
+            file_path = f'{settings.BASE_DIR}/media/posts/{file_name}'
+
+            image_filename = wget.download(image,file_path)
+
+            uploaded_file_url = f'posts/{file_name}'
 
             print(title)
         
