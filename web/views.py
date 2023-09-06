@@ -16,7 +16,7 @@ def index(request):
     if q:
         #posts = posts.filter(title__search=q)
         #posts = posts.annotate(search=SearchVector("title","author__name","categories__title")).filter(search=q)
-        vector = SearchVector("title","author__name","categories__title")
+        vector = SearchVector("title",weight="A") + SearchVector("author__name",weight="B") + SearchVector("categories__title",weight="C")
         query = SearchQuery(q)
 
         posts = posts.annotate(rank=SearchRank(vector,query)).filter(rank__gte=0.0001).order_by("-rank")
