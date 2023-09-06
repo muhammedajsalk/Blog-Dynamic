@@ -73,7 +73,7 @@ def create_post(request):
 @login_required(login_url="/users/login/")
 def my_posts(request):
     posts = Post.objects.filter(author__user=request.user, is_deleted=False)
-    instances = paginate_instances(request,posts,per_page=8)
+    instances = paginate_instances(request,posts)
     context = {
         "title" : "My Posts",
         "instances" : instances
@@ -84,7 +84,7 @@ def my_posts(request):
 @login_required(login_url="/users/login/")
 @allow_self
 def delete_post(request,id):
-    instance = get_object_or_404(Post,id=id)
+    instance = get_object_or_404(Post.objects.filter(id=id))
     instance.is_deleted =True
     instance.save()
 

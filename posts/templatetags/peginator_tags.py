@@ -8,18 +8,18 @@ register = template.Library()
 
 @register.simple_tag
 def get_elided_page_range(instances, number, on_each_side=3, on_ends=2):
-    paginator =Paginator(instances.object_list, instances.per_page)
+    paginator = Paginator(instances.object_list, instances.per_page)
     return paginator.get_elided_page_range(number=number, on_each_side=on_each_side, on_ends=on_ends)
 
 
 @register.simple_tag(takes_context=True)
-def change_params(context,page):
+def change_params(context, page):
     request = context['request']
     full_path = request.get_full_path()
 
-    if "?" in full_path:
+    if '?' in full_path:
         if "page" in full_path:
-            full_path = re.sub("page=[0-9]+", f"pages={page}",full_path)
+            full_path = re.sub("page=[0-9]+", f"pages={page}", full_path)
         else:
             full_path += f"&page={page}"
     else:
