@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http.response import HttpResponse
+from django.contrib.postgres.search import SearchVector
 
 from posts.models import Post,Category,Author
 from main.functions import paginate_instances
@@ -13,7 +14,8 @@ def index(request):
 
     q = request.GET.get('q')
     if q:
-        posts = posts.filter(title__search=q)
+        #posts = posts.filter(title__search=q)
+        posts = posts.annotate(search=SearchVector("title","author__name","categories__title")).filter(search=q)
 
     search_authors = request.GET.getlist("author")
     print(search_authors)
