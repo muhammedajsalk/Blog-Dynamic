@@ -13,7 +13,7 @@ def index(request):
 
     q = request.GET.get('q')
     if q:
-        posts = posts.filter(title__icontains=q)
+        posts = posts.filter(title__search=q)
 
     search_authors = request.GET.getlist("author")
     print(search_authors)
