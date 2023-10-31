@@ -25,7 +25,7 @@ SECRET_KEY = 'os*bhzsd@irvs8jpbq)+uo^_*s6xf49vkn5y#cv%k#crriwa-^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
 
 
 # Application definition
@@ -143,3 +143,7 @@ CKEDITOR_CONFIGS = {
 
 # In settings.py
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os
+STATICFILES_DIRS = os.path.join (BASE_DIR, 'static'),
+STATIC_ROOT = os. path.join(BASE_DIR, 'staticfiles_build', 'static')
